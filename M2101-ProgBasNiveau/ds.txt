@@ -1,0 +1,74 @@
+Le sujet de DS portera sur une amélioration du microprocesseur fictif
+
+Rappels:
+ 2 phases: 
+	 phase décodage (de l'instruction)
+	 phase exécution
+
+Modes de fonctionnement via des données:
+	Ecriture: 
+		1. adresse dans buffer d'adresse
+		2. données dans buffer E/S -> memoire
+		3. valider bascule Ecriture (donnees ont bien ete ecrites)
+	Lecture: adresse
+		1. adresse dans buffer d'adresse
+		2. valider bascule Lecture (autorisation de modifier les donnees dans buffer E/S)
+		3. donnée dans mémoire -> buffer E/S 
+
+Architecture: 
+	les bits 7&8 sont directement reliés au décodeur d'instruction
+	les bits 1..6 sont reliés au buffer d'adresse
+		
+Exemple:
+lda 61 : ACCU <- [61]
+add 62 : ACCU <- [ACCU] + [62] 
+sta 63 : [63] <- [ACCU]
+
+
+
+lda 61 est codé en binaire par 00 111101 soit 3D en hexadécimal
+	-> 3D se situe en mémoire à l'adresse pointée par le compteur de programme
+	-> phase décodage: 
+		3D (=61) est chargé dans le buffer E/S (en fait uniquement les bits 1..6)
+		3D (=61) est chargé dans le registre d'instruction (en fait uniquement les bits 7..8) 
+		00 est décodé en lda
+	-> phase exécution:
+		le lien entre les bits 1..6 et le buffer d'adresse est activé 
+		1. 3D (=61) est chargé dans le buffer d'adresse
+		2. bascule Lecture
+		3. donnée à l'adresse 61 (0B) -> buffer E/S
+		4. donnée buffer E/S -> ACCU
+
+add 62 est codé en binaire par 10 111110 soit BE en hexadécimal 
+	-> BE se situe en mémoire à l'adresse pointée par le compteur de programme
+	-> phase décodage: 
+		BE est chargé dans le buffer E/S (en fait uniquement les bits 1..6)
+		BE est chargé dans le registre d'instruction (en fait uniquement les bits 7..8) 
+		10 est décodé en add
+	-> phase exécution:
+		le lien entre les bits 1..6 et le buffer d'adresse est activé 
+		1. 111110 (=62) est chargé dans le buffer d'adresse
+		2. bascule Lecture
+		3. donnée à l'adresse 62 (0D) -> buffer E/S
+		4. donnée buffer E/S -> UAL (+)
+		5. donnée ACCU -> UAL (+)
+		6. donnée UAL -> ACCU
+
+sta 63 est codé en binaire par 01 111111 soit 7F en hexadécimal
+	-> 7F se situe en mémoire à l'adresse pointée par le compteur de programme
+	-> phase décodage: 
+		7F est chargé dans le buffer E/S (en fait uniquement les bits 1..6)
+		7F est chargé dans le registre d'instruction (en fait uniquement les bits 7..8) 
+		01 est décodé en lda
+	-> phase exécution:
+		le lien entre les bits 1..6 et le buffer d'adresse est activé 
+		1. 111111 (=63) est chargé dans le buffer d'adresse
+		2. donnée dans ACCU -> buffer E/S
+		3. données dans buffer E/S -> [63]
+		4. valider bascule Ecriture (donnees ont bien ete ecrites)
+		
+
+
+
+
+

@@ -1,0 +1,39 @@
+           %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+           Hiérarchie des formes géométriques
+                        %%%%%
+    Description succinte du contenu de cette version
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+	
+* Fichiers des formes
+---------------------
+Shape, Line, Rectangle, Circle
+	=> sont complets 
+
+Triangle et Carre
+	=> sont vides, à compléter
+
+
+* Autres classes utiles
+-----------------------
+Point : coordonnées entières
+
+Screen : pour faciliter les affichages, contient algorithmes de dessin
+
+	
+
+* main.cc
+---------
+permet de tester chaque classe de forme
+	=> décommenter pour tester les nouvelles formes (Triangle et Carre)
+
+
+* saisies.h et .cc
+----------------
+=> à compléter pour les nouvelles formes (Triangle et Carre)
+(ces fonctions seront surtout utiles pour la suite)
+
+Color.h 
+------
+contient un type color et des fonctions de saisie des paramètres pour chaque forme

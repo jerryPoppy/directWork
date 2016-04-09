@@ -1,0 +1,24 @@
+#ifndef CIRCLE_H
+#define CIRCLE_H
+
+#include "Screen.h"
+#include "Shape.h"
+#include "Point.h"
+
+class Circle : public Shape
+{
+  private:
+  void put_circle_point( Screen & s, int x, int y );
+    void draw_circle_points( Screen & s, const Point & pt );
+
+  protected:
+    Point m_center;
+    int m_radius;
+
+  public:
+    Circle( Color col, const Point & a, int r );
+    virtual void move( int dx, int dy );
+    virtual void draw( Screen & s ) const;
+};
+
+#endif

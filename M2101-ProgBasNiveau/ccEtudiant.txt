@@ -1,0 +1,35 @@
+**** Controle continu du 18 mars 2015 *****
+
+Instructions:
+	* par binôme
+	* fin: à 11h30
+	* connexion sur une machine PowerPC (euphor, stykades, machine virtuelle qemu ...) interdite
+	* envoyer la reponse sous forme d'un seul fichier texte nom1nom2.txt par mail à : arnaud.pecher@u-bordeaux.fr
+	* la feuille des instructions PowerPC est fournie dans le fichier jeuPOWERPC-3.pdf
+
+Sujet: pour chacun des 4 exercices suivants, donner un code PowerPC correspondant à la fonction.
+
+Exercice 1: int mult(int a, int b){
+		return a*b;
+		}
+
+Exercice 2: int discriminant(int a, int b, int c){
+		return (b*b)-(4*(a*c));
+		}
+
+Exercice 3: int max(int a, int b, int c){
+		if ((a>=b)&&(a>=c)) return a;	
+		if ((b>=a)&&(b>=c)) return b;
+		return c;
+		}
+
+Exercice 4: int somme(int n){
+		int res = 0;
+		int i=0;
+		for (i=0; i<n; i++)
+			res = res + (i*i);
+		return res;
+	}
+		
+	
+
